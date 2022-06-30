@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task1</title>
+    <style>
+        button {
+            position: absolute;
+            margin-left: 10px;
+            font-size: 15px;
+            width: 100px;
+            height: 20px;
+        }
+
+        #all img {
+            position: relative;
+            margin: 10px;
+            width: 50px;
+            height: 50px;
+        }
+
+        #big img {
+            position: absolute;
+            margin-top: 50px;
+            width: 200px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+<input type="text" id="arr">
+<button id="but">Показати</button>
+<div id="all"></div>
+<img id="big"/>
+<div id="showValidate"></div>
+</body>
+<script>
+    let button = document.getElementById("but")
+    button.addEventListener("click", function () {
+        let arr = document.getElementById("arr").value
+        let arr1 = JSON.parse(arr)
+        let all = document.getElementById("all")
+        all.innerHTML = ''
+        for (let i = 0; i < arr1.length; i++) {
+            let img = document.createElement('img');
+            img.src = arr1[i];
+            all.appendChild(img);
+        }
+        let big = document.getElementById("big")
+        all.addEventListener("click", function (event) {
+            if (event.target.tagName === "IMG")
+                big.src = event.target.src
+        })
+    })
+</script>
+</html>
+["pic1.png","pic2.png","pic3.png"]

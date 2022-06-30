@@ -1,0 +1,19 @@
+{
+  "name": "project04",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha *.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^8.4.0"
+  },
+  "dependencies": {
+    "mongoose": "^5.12.11",
+    "validator": "^13.6.0"
+  }
+}

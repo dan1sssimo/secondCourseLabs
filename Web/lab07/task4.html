@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    td {
+        width: 200px;
+        height: 200px;
+        background-color: grey;
+    }
+    .sizebox{
+        height: 100px;
+        width: 100px;
+    }
+</style>
+<body>
+<table id="table">
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+<input type="color" id="colorT" class="sizebox">
+<script>
+    let colorT = document.getElementById('colorT');
+    let table1 = document.getElementsByTagName('table')[0];
+
+    table1.addEventListener('click', function (event) {
+        let box = event.target;
+        if (!(box.tagName === 'TD'))
+            return 0;
+        else {
+            box.style.backgroundColor = colorT.value;
+        }
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+One challenge when your projects grow in complexity is communicating to the user how to use your project. Since the package consists of four different source code files, how does the user know which file to call to run reader?
+
+The python interpreter program has an -m option that allows you to specify a module name instead of a file name. For instance, if you have a script called hello.py, the following two commands are equivalent:
+The details of how reader works are not important for the purpose of this tutorial. However, if you are interested in seeing the implementation, you can expand the sections below. The package consists of five files:
+The source code of the package is in a reader subdirectory together with a configuration file. There are a few tests in a separate subdirectory. The tests will not be covered here, but you can find them in the GitHub repository. To learn more about testing, see Anthony Shaw’s great tutorial on Getting Started With Testing in Python.
+
+If you’re working with your own package, you may use a different structure or have other files in your package directory. Our Python Application Layouts reference discusses several different options. The instructions in this guide will work independently of the layout you use.
+
+In the rest of this section, you’ll see how the reader package works. In the next section, you’ll get a closer look at the special files, including setup.py, README.md, and MANIFEST.in, that are needed to publish your package.
+Python is famous for coming with batteries included. Sophisticated capabilities are available in the standard library. You can find modules for working with sockets, parsing CSV, JSON, and XML files, and working with files and file paths.
+
+However great the packages instead. included with Python are, there are many fantastic projects available outside the standard library. These are most often hosted at the Python Packaging Index (PyPI), historically known as the Cheese Shop. At PyPI, you can find everything from Hello World to advanced deep learning libraries.
+
+In this tutorial, you’ll cover how to upload your own package to PyPI. While getting your project published is easier than it used to be, there are still a few steps involved.
+Before releasing your package to the world, you should add some documentation. Depending on your package, the documentation can be as small as a simple README file, or as big as a full web page with tutorials, example galleries, and an API reference.
+
+At a minimum, you should include a README file with your project. A good README should quickly describe your project, as well as tell your users how to install and use your package. Typically, you want to include your README as the long_description argument to setup(). This will display your README on PyPI.
+
+Traditionally, PyPI has used reStructuredText for package documentation. However, since March 2018 Markdown has also been supported.
+
+Outside of PyPI, Markdown is more widely supported than reStructuredText. If you don’t need any of the special features of reStructuredText, you’ll be better off keeping your README in Markdown. Note that you should use the setup() parameter long_description_content_type to tell PyPI which format you are using. Valid values are text/markdown, text/x-rst, and text/plain.
+
+For bigger projects, you might want to offer more documentation than can reasonably fit in a single file. In that case, you can use sites like GitHub or Read the Docs, and link to the documentation using the url parameter. In the setup.py example above, url is used to link to the reader GitHub repository.

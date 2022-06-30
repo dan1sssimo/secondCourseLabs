@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    div {
+        display: inline-block;
+        padding: 0;
+    }
+
+    .block {
+        width: 60px;
+        height: 60px;
+        border: #000 solid 2px;
+        background-color: blue;
+        padding: 0;
+    }
+
+    .grey {
+        width: 60px;
+        height: 60px;
+        border: #000 solid 2px;
+        background-color: grey;
+        padding: 0;
+    }
+</style>
+<body>
+<textarea id="textarea01">1010
+1111</textarea>
+<div id="container"></div>
+<br>
+<button id="click_01">Намалювати</button>
+<script>
+    let change = document.getElementById("click_01")
+
+    function drawing() {
+        let tmp1 = ""
+        let textarea_01 = document.getElementById("textarea01").value
+        document.getElementById("container").innerHTML = "";
+        for (let i in textarea_01) {
+            if (textarea_01[i] === "1") {
+                tmp1 += "<div class='block'></div>"
+            }
+            if (textarea_01[i] == "0") {
+                tmp1 += "<div class='grey'></div>"
+            } else if (textarea_01[i] == "\n")
+                tmp1 += "<br>"
+        }
+        document.getElementById("container").innerHTML = tmp1;
+    }
+
+    change.onclick = drawing
+</script>
+</body>
+</html>

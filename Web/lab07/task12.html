@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    div div {
+        display: inline;
+    }
+
+    .rating {
+        display: flex;
+        align-items: flex-end;
+        font-size: 40px;
+        line-height: 0.75;
+    }
+
+    .rating_body {
+        position: relative;
+    }
+
+    .rating_body::before {
+        content: "★★★★★";
+        display: block;
+        color: grey;
+    }
+
+    .rating_items {
+        display: flex;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+
+    .rating_item {
+        flex: 0 0 15%;
+        height: 100%;
+        opacity: 0;
+    }
+
+    .rating_active {
+        position: absolute;
+        height: 100%;
+        width: 0%;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+    }
+
+    .rating_active::before {
+        content: "★★★★★";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        color: yellow;
+    }
+</style>
+<body>
+<h3>Рейтинг</h3>
+<div id="rezult">0</div>
+<div>
+    <div id="like" onclick="onclick1()">👍</div>
+    <div id="dislike" onclick="onclick2()">👎🏻</div>
+    <button onclick="initRatings()">оновити статистику</button>
+</div>
+<div class="rating">
+    <div class="rating_body">
+        <div class="rating_active"></div>
+        <div class="rating_items">
+            <input type="radio" class="rating_item" value="1" name="rating">
+            <input type="radio" class="rating_item" value="2" name="rating">
+            <input type="radio" class="rating_item" value="3" name="rating">
+            <input type="radio" class="rating_item" value="4" name="rating">
+            <input type="radio" class="rating_item" value="5" name="rating">
+        </div>
+    </div>
+    <div class="rating_value"></div>
+</div>
+<script >
+    let likes = 0
+    let dislikes = 0
+
+    function onclick1() {
+        likes += 1
+        console.log(likes)
+    }
+
+    function onclick2() {
+        dislikes += 1
+        console.log(likes)
+    }
+
+    const ratings = document.querySelectorAll('.rating')
+    if (ratings.length > 0)
+        initRatings()
+
+    function initRatings() {
+        let ratingActive, ratingValue
+        for (let index = 0; index < ratings.length; index++) {
+            const rating = ratings[index]
+            initRating(rating)
+        }
+
+        function initRating(rating) {
+            initRatingLets(rating)
+
+            setRatingActiveWidth()
+        }
+
+        function initRatingLets(rating) {
+            ratingActive = rating.querySelector('.rating_active')
+            ratingValue = rating.querySelector('.rating_value')
+        }
+
+        function setRatingActiveWidth(index = (likes + dislikes)) {
+            const ratingActiveWidth = likes / index * 100
+            console.log(ratingActiveWidth)
+            ratingActive.style.width = `${ratingActiveWidth}%`
+            document.getElementById("rezult").innerHTML = ratingActiveWidth+"%"
+        }
+    }
+</script>
+</body>
+</html>

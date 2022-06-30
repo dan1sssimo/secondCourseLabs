@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Анкета</title>
+</head>
+<style>
+    button{
+        color: red;
+        background-color: black;
+    }
+    fieldset{
+        background-color: yellow;
+    }
+    legend{
+        color: blue;
+    }
+    h2{
+        color: blue;
+    }
+</style>
+<body>
+<div>
+    <h2 class="container">Анкета</h2>
+    <form  id="form" class="container" >
+        <div>
+            <fieldset>
+                <legend>Інформація</legend>
+                <table>
+                    <tr>
+                        <td>
+                            <label for="firstName">Name</label>
+                        </td>
+                        <td>
+                            <input id="firstName" type="text" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="lastName">S.Name</label>
+                        </td>
+                        <td>
+                            <input  id="lastName" type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="email">Email</label>
+                        </td>
+                        <td>
+                            <input autocomplete="off"  id="email" type="email">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="phoneNumber">PhoneNum</label>
+                        </td>
+                        <td>
+                            <input id="phoneNumber" type="tel"
+                                   pattern="+38 0-\d{2}-\d{3}-\d{2}-\d{2}" required>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </div>
+        <div>
+            <p>
+                <button type="submit">Відправити</button><br><br>
+                <button type="reset">Очистити</button>
+            </p>
+        </div>
+    </form>
+</div>
+</body>
+<script>
+    const form = document.querySelector('#form');
+    const firstName = document.querySelector('#firstName');
+    const lastName = document.querySelector('#lastName');
+    const email = document.querySelector('#email');
+    const phoneNumber = document.querySelector('#phoneNumber');
+
+    let dataObject;
+
+    document.addEventListener('DOMContentLoaded', () => {
+        try {
+            debugger
+            dataObject = JSON.parse(localStorage.getItem('formData'))
+            firstName.value = dataObject.firstName;
+            lastName.value = dataObject.lastName;
+            email.value = dataObject.email;
+            phoneNumber.value = dataObject.phoneNumber;
+        }
+        catch (e) {
+            console.log(e);
+            dataObject = {
+                firstName: '',
+                lastName: '',
+                email: '',
+                phoneNumber: '',
+            };
+        }
+    });
+
+    window.addEventListener('beforeunload', () => {
+        debugger
+        localStorage.setItem('formData', JSON.stringify(dataObject));
+    }, false);
+
+    form.addEventListener('input', (e) => {
+        console.log(e.target.id);
+        if(e.target !== form){
+            debugger
+            dataObject[e.target.id.toString()] = e.target.value;
+        }
+    })
+</script>
+</html>

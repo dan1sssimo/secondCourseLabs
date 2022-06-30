@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="arr">
+    <input class="checkbox" type="checkbox" name="boxes" value="ua" id="ua">Ukrainian<p>
+    <input class="checkbox" type="checkbox" name="boxes" value="en" id="en">English<p>
+    <input class="checkbox" type="checkbox" name="boxes" value="sp" id="sp">Spanish<p>
+    <span id="rez"></span><p>
+    <input type="button" onclick="task03()" value="Розрахувати"><br>
+</form>
+<script>
+    function task03() {
+        rez = document.getElementById('rez')
+        rez.innerHTML = ''
+        let arr_elements = document.getElementById('arr')
+        let arr1 = arr_elements.querySelectorAll(':checked')
+        let tmp1 = true
+        for (let i = 0; i < arr1.length; i++) {
+            if (tmp1) {
+                rez.innerHTML = arr1[i].value
+                tmp1 = false
+            } else rez.innerHTML += ',' + arr1[i].value
+        }
+    }
+</script>
+</body>
+</html>

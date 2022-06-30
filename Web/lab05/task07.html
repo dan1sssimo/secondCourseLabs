@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *,
+    *:after,
+    *:before {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        -webkit-tap-highlight-color: transparent;
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        outline: 0;
+    }
+
+    #randomteleport {
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        flex-flow: row wrap;
+        place-content: center;
+    }
+
+    #randomteleport .cell {
+        text-align: center;
+        min-height: 50px;
+        line-height: 50px;
+        min-width: 33.3%;
+        border: 1px solid black;
+    }
+</style>
+<body>
+<div id="randomteleport">
+    <div class="cell">
+        <button id="button-1">тик</button>
+    </div>
+    <div class="cell">
+    </div>
+    <div class="cell">
+    </div>
+    <div class="cell">
+    </div>
+    <div class="cell">
+    </div>
+</div>
+<script>
+    let clicking = {
+        field: document.getElementById(`randomteleport`),
+        events: {
+            mouseover: e => {
+                if (e.target.id === `button-1`) {
+                    let i, newI;
+                    while (i === newI)
+                        newI = Math.floor(Math.random() * clicking.field.children.length);
+                    clicking.field.children[newI].appendChild(e.target);
+                    newI = i = null;
+                }
+            },
+        },
+    };
+
+    clicking.field.addEventListener(`mouseover`, clicking.events.mouseover);
+</script>
+</body>
+</html>

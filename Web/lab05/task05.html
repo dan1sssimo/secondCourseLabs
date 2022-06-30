@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<table border="1" style="border: 3px solid black">
+    <tr>
+        <td>Січень</td>
+        <td><input type="number"></td>
+    </tr>
+    <tr>
+        <td>Лютий</td>
+        <td><input type="number"></td>
+    </tr>
+    <tr>
+        <td>Березень</td>
+        <td><input type="number"></td>
+    </tr>
+    <tr>
+        <td>Квітень</td>
+        <td><input type="number"></td>
+    </tr>
+    <tr>
+        <td>Травень</td>
+        <td><input type="number"></td>
+    </tr>
+    <tr>
+        <td>Червень</td>
+        <td><input type="number"></td>
+    </tr>
+    <tr>
+        <td>Липень</td>
+        <td><input type="number"></td>
+    </tr>
+    <tr>
+        <td>Серпень</td>
+        <td><input type="number"></td>
+    </tr>
+    <tr>
+        <td>Вересень</td>
+        <td><input type="number"></td>
+    </tr>
+    <tr>
+        <td>Жовтень</td>
+        <td><input type="number"></td>
+    </tr>
+    <tr>
+        <td>Листопад</td>
+        <td><input type="number"></td>
+    </tr>
+    <tr>
+        <td>Грудень</td>
+        <td><input type="number"></td>
+    </tr>
+    <tr>
+        <td>Сума</td>
+        <td><span id="sum"></span></td>
+    </tr>
+    <tr>
+        <td>Срд.зн.</td>
+        <td><span id="average"></span></td>
+    </tr>
+    <tr>
+        <td>Мін.зн.</td>
+        <td><span id="min"></span></td>
+    </tr>
+    <tr>
+        <td>Макс.зн.</td>
+        <td><span id="max"></span></td>
+    </tr>
+</table>
+<hr>
+<button onclick="Calculate()">Обрахувати</button>
+</body>
+<script>
+    function Calculate() {
+        let summa = 0
+        let avarage_znach = 0
+        let minimum = 1000000000
+        let maximum = 0
+        let array = document.getElementsByTagName('input')
+        let $summa = document.getElementById('sum')
+        let $avarage_znach = document.getElementById('average')
+        let $minimum = document.getElementById('min')
+        let $maximum = document.getElementById('max')
+        for (let i = 0; i < array.length; i++) {
+            summa += +array[i].value
+        }
+        avarage_znach = Math.ceil(summa / array.length * 100) / 100
+        for (let i = 0; i < array.length; i++) {
+            if (array[i].value > maximum) {
+                maximum = array[i].value
+            }
+            if (array[i].value < minimum) {
+                minimum = array[i].value
+            }
+        }
+        $summa.innerHTML = summa
+        $avarage_znach.innerHTML = avarage_znach
+        $minimum.innerHTML = minimum
+        $maximum.innerHTML = maximum
+    }
+</script>
+
+</body>
+</html>

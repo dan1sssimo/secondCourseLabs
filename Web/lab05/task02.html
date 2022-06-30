@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 id="stats01">Загальний рахунок 0% (0 правильних відповідей із 10)</h1>
+<input type="button" value="Наступне завдання" id="nexttask">
+<p>
+    <span id="task">0 * 0</span>
+    <input type="text" id="answer">
+    <input type="button" value="Перевірити" id="check123">
+<p>
+    <span id="rezult">---</span>
+    <script>
+        let $nexttask = document.getElementById("nexttask")
+        $nexttask.addEventListener("click", uploadtask)
+        let $rezult = document.getElementById("rezult")
+        let $task = document.getElementById("task")
+        let $answer = document.getElementById("answer")
+        let $stats01 = document.getElementById("stats01")
+        let $check123 = document.getElementById("check123")
+        $check123.addEventListener("click", checking)
+        let task = 0
+        let correctAnswer
+        let All_correct = 0
+
+        function uploadtask() {
+            $answer.value = ''
+            $rezult.innerHTML = ''
+            $check123.disabled = false
+            if (task >= 9)
+                $nexttask.disabled = true
+            let a = (Math.round(Math.random() * 7) + 2)
+            let b = (Math.round(Math.random() * 7) + 2)
+            task++
+            correctAnswer = a * b
+            $task.innerHTML = a + "*" + b + "="
+        }
+
+        function checking() {
+            $check123.disabled = true
+            if ($answer.value == correctAnswer) {
+                $rezult.innerHTML = "Правильно"
+                All_correct++
+            } else
+                $rezult.innerHTML = "Помилка, правильна відповідь = " + correctAnswer
+            $stats01.innerHTML = "Загальний рахунок " + (All_correct * 10)
+                + "% (" + All_correct + " правильних відповідей із 10)";
+        }
+    </script>
+
+</body>
+</html>
+</body>
+</html>

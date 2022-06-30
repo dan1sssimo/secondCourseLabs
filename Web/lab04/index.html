@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script async src="lab04.js"></script>
+    <script async src="lab04lib.js"></script>
+    <link rel="stylesheet" href="tablest.css">
+</head>
+<body>
+<form>
+    <table>
+        <tbody>
+        <tr>
+            <th>Завдання</th>
+            <th></th>
+            <th>Результат</th>
+        </tr>
+        <tr>
+            <td><span>Завдання 1.</span> Виведення поточної дати та часу</td>
+            <td>
+                <button type="button" onclick="OnMouseClick()">Виконати</button>
+            </td>
+            <td id="firsttask"></td>
+        </tr>
+        <tr>
+            <td><span>Завдання 2.</span> Виведення дня тижня</td>
+            <td>
+                <button type="button" onclick="OnMouseClick1()">Виконати</button>
+            </td>
+            <td id="task2"></td>
+        </tr>
+        <tr>
+            <td><span>Завдання 3.</span>Дата N днів назад</td>
+            <td><label for="dni"></label><input id="dni" type="text"/>
+                <button type="button" onclick="OnMouseClick2()">Виконати</button>
+            </td>
+            <td id="task3"></td>
+        </tr>
+        <tr>
+            <td><span>Завдання 4.</span>Напишіть функцію,
+                яка за заданим роком та номером місяця визначає
+                останній день місяця.
+            </td>
+            <td><label for="rik"></label><input id="rik" type="text"/>
+                <label for="nummonth"></label><input id="nummonth" type="text"/>
+                <button type="button" onclick="OnMouseClick3()">Виконати</button>
+            </td>
+            <td id="task4"></td>
+        </tr>
+        <tr>
+            <td><span>Завдання 5.</span> Кількість секунд, яка пройшла від початку
+                сьогоднішнього дня;кількість секунд
+                до початку наступного дня.
+            </td>
+            <td>
+                <button type="button" onclick="OnMouseClick4()">Виконати</button>
+            </td>
+            <td>
+                <label id="task5"></label>
+                <label id="task5.1"></label>
+            </td>
+
+        </tr>
+        <tr>
+            <td><span>Завдання 6.</span> На уроці історії Оленці часто
+                потрібно за даним номером року Y>=0 визначати до якої половини
+                X якого століття C та якого тисячоліття M цей рік належить за
+                Григоріанським календарем.Допоможіть їй в цьому.
+            </td>
+            <td>date 1<label for="date11"></label><input id="date11" type="text"/>
+                <button type="button" onclick="OnMouseClick5()">Виконати</button>
+            </td>
+            <td >
+                <label id="task6_1"></label>
+                <label id="task6_2"></label>
+                <label id="task6_3"></label>
+            </td>
+        </tr>
+        <tr>
+            <td><span>Завдання 7.</span>Петрик дуже любив історію
+                і собі в довідник записував дати всіх визначних подій.
+                Маючи дату початку події та дату її завершення, допоможіть
+                Петрику обчислити скільки повних років тривала дана подія.
+                Примітка.
+            </td>
+            <td>date 1<label ></label><input id="one1" type="date"/>
+                date 2<label></label><input id="two2" type="date"/>
+                <button type="button" onclick="OnMouseClick6()">Виконати</button>
+            </td>
+            <td id="task7"></td>
+        </tr>
+        <tr>
+            <td><span>Завдання 8.</span> Гринвіцький годинник.
+                В Гринвіцький обсерваторії жив старий астроном.
+                Одного дня в нього зупинився годинник.
+                І він вирішив використовуючи знання про
+                Сонце самостійно встановити час. Він навмання
+                завів годинник і став записувати час сходу та заходу Сонця.
+                Астроном також знає що теоретично о 12 годині 0 хвилин
+                Сонце повинно бути в зеніті. Але старість має свої мінуси,
+                і астроном уже кілька днів сумнівається, чи правильно в нього
+                відображається час на годиннику. Допоможіть астроному в його обрахунках.
+            </td>
+            <td>
+                Час 1<label></label><input id="time1" type="time"/><br>
+                Час 2<label></label><input id="time2" type="time"/>
+                <button type="button" onclick="OnMouseClick7()">Виконати</button>
+            </td>
+            <td id="task8"></td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,26 @@
+*{
+    font-size: 25px;
+    font-weight: bold;
+}
+#result {
+    border: solid 1px black;
+    padding: 3px;
+    height: 500px;
+    width: 1025px;
+    overflow: scroll;
+    overflow-x: hidden;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+#mapInfo {
+    color: darkgreen;
+}
+button{
+    height: 30px;
+    width: 120px;
+    color: green;
+    background-color: snow;
+}
+div button{
+    margin-left: 250px;
+}

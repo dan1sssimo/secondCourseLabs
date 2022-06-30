@@ -1,0 +1,3 @@
+Python can be used to create bots
+Python can be used to create programs and bots
+Python can be used to create new scripts

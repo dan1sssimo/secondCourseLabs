@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" value="0" id="number1" style="width: 450px">
+<br>
+<input type="text" value="0" id="number2" style="width: 450px">
+<button onclick="calculate()">ADD</button>
+<div id="result"></div>
+<script>
+    function calculate() {
+        let number1 = document.getElementById('number1').value;
+        let number2 = document.getElementById('number2').value;
+        let length1 = number1.length;
+        let length2 = number2.length;
+        let maxLength = Math.max(length1, length2);
+        number1 = number1.padStart(maxLength, "0");
+        number2 = number2.padStart(maxLength, "0");
+
+        document.getElementById('number1').value = number1;
+        document.getElementById('number2').value = number2;
+
+        let result = "";
+        let temp = 0;
+        for (let i = maxLength - 1; i >= 0; i--) {
+            let a = Number(number1[i]) + Number(number2[i]) + temp;
+            result = String(a % 10) + result;
+            temp = parseInt(a / 10)
+        }
+        if (temp > 0) {
+            result = String(temp) + result;
+        }
+
+
+        document.getElementById('result').innerHTML = result;
+    }
+</script>
+</body>
+</html>

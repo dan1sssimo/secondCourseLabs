@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" manifest="cache.appcache">
+<link rel="stylesheet" href="style.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div><p>Задайте діапазон чисел від <input id="from" value="1"> до <input id="to" value="100000"></p></div>
+<div>
+    <button id="searchButton">Старт</button>
+    <button id="stopButton">Стоп</button>
+</div>
+
+<textarea id="result"></textarea>
+<div id="mapInfo"></div>
+
+<script>
+    let worker
+    let start
+    let start1
+    let end1
+    let searchButton = document.getElementById("searchButton")
+    let stopButton = document.getElementById("stopButton")
+    let from = document.getElementById("from")
+    localStorage["lastprime"] = from.value
+    let to = document.getElementById("to")
+    Notification.requestPermission()
+    loadMap()
+    searchButton.addEventListener("click", function () {
+        end1 = performance.now()
+        worker = new Worker("PrimeWorker.js")
+        if (!start)
+            start = performance.now()
+        else
+            start += end1 - start1
+        worker.addEventListener("message", function (event) {
+            let prime = event.data
+            if (prime !== true) {
+                localStorage["lastprime"] = prime
+                let end = performance.now()
+                document.getElementById("result").innerHTML += prime + "(" + (end - start).toFixed(0) + ")" + ", "
+                localStorage["start"] = start
+                localStorage["result"] = document.getElementById("result").innerHTML
+            }
+            if (prime === true && Notification.permission === "granted")
+                showNotification("Прості числа найдені")
+        })
+        worker.postMessage({
+            from: localStorage["lastprime"],
+            to: to.value,
+        });
+    })
+    stopButton.addEventListener("click", function () {
+        start1 = performance.now()
+        worker.terminate();
+    })
+
+    function showNotification(message) {
+        new Notification(message)
+    }
+
+    function loadMap() {
+        let mapInfo = document.getElementById('mapInfo');
+        navigator.geolocation.getCurrentPosition(geolocationSuccess);
+
+        function geolocationSuccess(position) {
+            mapInfo.innerHTML = 'Ваші координати: ' + position.coords.latitude + ", "
+                + position.coords.longitude;
+        }
+    }
+
+    function visibility() {
+        if (document.hidden) {
+            setTimeout(function () {
+                showNotification("Сторінка неактивна вже 10 секунд")
+            }, 10000)
+        }
+    }
+
+    window.onload = function () {
+        document.addEventListener("visibilitychange", visibility)
+    }
+    window.onload = function () {
+        document.getElementById("result").innerHTML = localStorage["result"]
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 7</title>
+</head>
+<body>
+
+<label><textarea id="text"></textarea></label><br>
+<input type="button" id="button" value="Створити таблицю" style="width: 150px; margin: 30px">
+
+<table id="table" border="1">
+    <tr>
+        <td>FirstName</td>
+        <td>SecondName</td>
+        <td>Gender</td>
+        <td>Address</td>
+        <td>BirthDate</td>
+        <td>Nickname</td>
+        <td>Password</td>
+        <td>Email</td>
+    </tr>
+</table>
+<script>
+    var $button = document.getElementById("button");
+    var $table = document.getElementById("table");
+    var $text = document.getElementById("text");
+
+
+    function Table() {
+
+        let text = $text.value;
+        let Text = text.split('\n');
+        let i = -1;
+        let j = -1;
+        var list = [Text.length];
+        while (i < Text.length && j < Text.length) {
+            let name = Text[++i].split(' ');
+            list[++j] = name[0];
+            list[++j] = name[1];
+            list[++j] = Text[++i];
+            list[++j] = Text[++i] + ' ' + Text[++i];
+            list[++j] = Text[++i];
+            list[++j] = Text[++i];
+            list[++j] = Text[++i];
+            list[++j] = Text[++i];
+            list[++j] = Text[++i];
+            if (i >= Text.length - 1) {
+                break;
+            }
+        }
+        j = -1;
+        //_______________________________________
+        var str = $text.value;
+        for (let i = 0; i < str.length / 8 - 1; i++) {
+            var part = str.charAt(i);
+            if (part === "\n") {
+                var tmp = part.substr(0, i);
+                var tr = $table.insertRow('1');
+                for (let i = 0; i <= 7; i++) {
+                    let td = tr.insertCell();
+                    td.appendChild(document.createTextNode(list[++j]));
+                    td.value = tmp;
+                }
+                ++j;
+                if (j >= Text.length - 2) {
+                    break;
+                }
+            }
+        }
+    }
+
+    $button.addEventListener('click', Table);
+</script>
+<style>
+    table {
+        border-collapse: collapse;
+    }
+
+    td {
+        width: 150px;
+        height: 30px;
+        text-align: center;
+    }
+
+    textarea {
+        width: 300px;
+        height: 400px;
+    }
+</style>
+</body>
+</html>

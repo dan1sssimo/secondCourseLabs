@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+</style>
+<body>
+<p>wight: 0<input type="range" min="0" max="500" id="wight" oninput="wightPic()" value="250">500<input type="text"
+                                                                                                       id="1" >
+</p>
+<p>height: 0<input type="range" min="0" max="500" id="height" oninput="heightPic()" value="250">500<input type="text"
+                                                                                                          id="2"></p>
+<p>rotate: 0<input type="range" min="0" max="360" id="rotate" oninput="rotatePic()" value="0">360<input type="text"
+                                                                                                        id="3"></p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<p><img src="task05.jpg" alt="" id="pic"></p>
+</body>
+<script>
+    function wightPic() {
+        let size = document.getElementById("wight").value
+        let img = document.getElementById("pic")
+        let input = document.getElementById("1")
+        img.width = 1 * size
+        input.value = size
+    }
+
+    function heightPic() {
+        let size = document.getElementById("height").value
+        let img = document.getElementById("pic")
+        let input = document.getElementById("2")
+        img.height = 1 * size
+        input.value = size
+
+    }
+
+    function rotatePic() {
+        let size = document.getElementById("rotate").value
+        let img = document.getElementById("pic")
+        let input = document.getElementById("3")
+        img.setAttribute("style", "transform: rotate(" + size + "deg)");
+        input.value = size
+    }
+</script>
+</html>

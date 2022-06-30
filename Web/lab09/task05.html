@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task5</title>
+</head>
+<body>
+<video src="Sand%20-%2073847.mp4" controls id="video"></video>
+</body>
+<script>
+    const video = document.querySelector('#video');
+    document.addEventListener('DOMContentLoaded', () => {
+        const time = localStorage.getItem('video');
+        if (time !== null)
+            video.currentTime = time;
+    });
+    window.addEventListener('beforeunload', () => {
+        localStorage.setItem('video', video.currentTime);
+    }, false);
+</script>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task2</title>
+</head>
+<body>
+<div>
+    <button id="increment">A+</button>
+    <button id="decrement">A-</button>
+    <div id="text">
+       OBEMA ABOBA PENA     OBEMA ABOBA PENA    OBEMA ABOBA PENA    OBEMA ABOBA PENA    OBEMA ABOBA PENA
+        OBEMA ABOBA PENA    OBEMA ABOBA PENA    OBEMA ABOBA PENA    OBEMA ABOBA PENA    OBEMA ABOBA PENA
+        OBEMA ABOBA PENA
+    </div>
+</div>
+<script>
+    const increment = document.querySelector('#increment');
+    const decrement = document.querySelector('#decrement');
+    const text = document.querySelector('#text');
+    let fontSize = 10;
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log(document.cookie)
+        document.cookie.split(';').forEach(part => {
+            if (part.split('=')[0].trim() === 'fontSize') {
+                debugger
+                if (part.split('=')[1].trim() !== '')
+                    fontSize = parseInt(part.split('=')[1].trim());
+            }
+        });
+
+        text.style.fontSize = fontSize + 'px';
+    })
+
+    increment.addEventListener('click', () => {
+        text.style.fontSize = ++fontSize + 'px';
+        document.cookie = `fontSize=${fontSize}`;
+    });
+
+    decrement.addEventListener('click', () => {
+        if (fontSize > 0) {
+            text.style.fontSize = --fontSize + 'px';
+            document.cookie = `fontSize=${fontSize}`;
+        }
+    });
+</script>
+</body>
+</html>

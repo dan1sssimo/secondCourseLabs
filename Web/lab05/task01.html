@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title 1</title>
+</head>
+<body>
+<h1 id="stats01">Загальний рахунок 0% (0 правильних відповідей із 10)</h1>
+<input type="button" value="Наступне завдання" id="nexttask">
+<p id="task01">0 x 0 =</p>
+<label><input type="radio" name="answer"><span id="rez1"> - </span></label><br>
+<label><input type="radio" name="answer"><span id="rez2"> - </span></label><br>
+<label><input type="radio" name="answer"><span id="rez3"> - </span></label><br>
+<label><input type="radio" name="answer"><span id="rez4"> - </span></label>
+<p id="global_rez">---</p>
+<script>
+    let $nexttask = document.getElementById("nexttask")
+    $nexttask.addEventListener("click", uploadtask)
+    let $task01 = document.getElementById("task01")
+    let $stats01 = document.getElementById("stats01")
+    let $global_rez = document.getElementById("global_rez")
+    let array01 = document.querySelectorAll("input[name]")
+    for (let i = 0; i < 4; i++) {
+        array01[i].addEventListener("click", checking)
+        array01[i].disabled = true
+    }
+    let task = 0
+    let answers = [0, 0, 0, 0]
+    let correctAnswer01
+    let All_correct = 0
+
+    function uploadtask() {
+        if (task >= 9) {
+            $nexttask.disabled = true
+        }
+        task++
+        let a = Math.floor(Math.random() * (11 - 1) + 1)
+        let b = Math.floor(Math.random() * (11 - 1) + 1)
+        $task01.innerHTML = a + "*" + b + "="
+        correctAnswer01 = a * b
+        let tmp = Math.floor(Math.random() * (4 - 1) + 1)
+        for (let i = 0; i < 4; i++) {
+            if (i == tmp)
+                answers[i] = correctAnswer01
+            else
+                answers[i] = Math.floor(Math.random() * (101 - 1) + 1)
+        }
+        document.getElementById("rez1").innerHTML = "  " + answers[0]
+        document.getElementById("rez2").innerHTML = "  " + answers[1]
+        document.getElementById("rez3").innerHTML = "  " + answers[2]
+        document.getElementById("rez4").innerHTML = "  " + answers[3]
+        for (let i = 0; i < 4; i++) {
+            array01[i].disabled = false
+            array01[i].checked = false
+        }
+        $global_rez.innerHTML = "---"
+    }
+
+    function checking() {
+        for (let i = 0; i < 4; i++) {
+            if (array01[i].checked === true) {
+                if (answers[i] === correctAnswer01) {
+                    $global_rez.innerHTML = "Правильно"
+                    All_correct++
+                } else
+                    $global_rez.innerHTML = "Помилка, правильна відповідь = " + correctAnswer01
+            }
+            array01[i].disabled = true
+            $stats01.innerHTML = "Загальний рахунок " + (All_correct * 10)
+                + "% (" + All_correct + " правильних відповідей із 10)";
+        }
+    }
+</script>
+</body>
+</html>

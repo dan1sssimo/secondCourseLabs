@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    img {
+        height: 500px;
+        width: 500px;
+    }
+</style>
+<body>
+<table>
+    <tr style="text-align: center;">
+        <td colspan="2"><img src="image/12.jpg" name="slide_show"></td>
+    </tr>
+    <tr>
+        <td style="text-align: right;"><a onclick="chgImg(-1)">Некст картинка</a></td>
+        <td style="text-align: left;"><a onclick="chgImg(+1)">Ласт картинка</a></td>
+    </tr>
+</table>
+<script>
+    all_images = new Array(
+        "image/12.jpg",
+        "image/2.jpg",
+        "image/3.jpg",
+        "image/4.jpg");
+    let num_photo = 0;
+    let ImgLength = all_images.length - 1;
+
+    function chgImg(tmp) {
+        if (document.images) {
+            num_photo = num_photo + tmp;
+            if (num_photo > ImgLength) {
+                num_photo = 0;
+            }
+            if (num_photo < 0) {
+                num_photo = ImgLength;
+            }
+            document.slide_show.src = all_images[num_photo];
+        }
+    }
+</script>
+</body>
+</html>

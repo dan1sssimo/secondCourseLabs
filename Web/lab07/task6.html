@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+
+</style>
+<body>
+<table border="1" style="border: 3px solid black">
+    <tr>
+        <th>Товар</th>
+        <th></th>
+    </tr>
+    <tr>
+        <td>Брюки</td>
+        <td>
+            <button onclick="onclick1()">Замовити</button>
+        </td>
+    </tr>
+    <tr>
+        <td>Сорочки</td>
+        <td>
+            <button onclick="onclick2()">Замовити</button>
+        </td>
+    </tr>
+    <tr>
+        <td>Шорти</td>
+        <td>
+            <button onclick="onclick3()">Замовити</button>
+        </td>
+    </tr>
+</table>
+<h2></h2>
+<table border="1" style="border: 3px solid black">
+    <tr>
+        <th>Товар</th>
+        <th>Кількість</th>
+    </tr>
+    <tr>
+        <td>Брюки</td>
+        <td id="one">0</td>
+    </tr>
+    <tr>
+        <td>Сорочка</td>
+        <td id="two">0</td>
+    </tr>
+    <tr>
+        <td>Шорти</td>
+        <td id="three">0</td>
+    </tr>
+</table>
+<script>
+    let click1 = 0, click2 = 0, click3 = 0
+    let count1 = document.getElementById("one"), count2 = document.getElementById("two"),
+        count3 = document.getElementById("three")
+
+    function onclick1() {
+        click1 += 1
+        count1.innerHTML = click1
+    }
+
+    function onclick2() {
+        click2 += 1
+        count2.innerHTML = click2
+    }
+
+    function onclick3() {
+        click3 += 1
+        count3.innerHTML = click3
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+ "firstName": "Danylo",
+ "lastName": "Savchenko",
+ "languages": [
+  {
+   "title": "JavaScript",
+   "level": "Senior"
+  },
+  {
+   "title": "PHP",
+   "level": "Senior"
+  },
+  {
+   "title": "C#",
+   "level": "Senior"
+  }
+ ]
+}

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task6</title>
+</head>
+<style>
+    .buttons, #shapes {
+        position: center;
+        display: flex;
+        gap: 15px;
+    }
+
+    #canvas {
+        width: 1000px;
+        height: 1000px;
+        border: 5px solid black;
+        background-color: lightyellow;
+    }
+
+    .shape {
+        background-color: blue;
+        width: 30px;
+        height: 30px;
+    }
+
+    #circle {
+        border-radius: 50%;
+    }
+
+    .selected{
+        border: 4px solid black;
+    }
+    button{
+        background-color: green;
+    }
+</style>
+<body>
+<div class="buttons">
+    <button id="refill">Refill</button>
+    <button id="clear">Clear</button>
+    <div id="shapes">
+        <div id="rect" class="shape selected"></div>
+        <div id="circle" class="shape"></div>
+    </div>
+</div>
+<canvas id="canvas" width="1000" height="1000"></canvas>
+</body>
+<script>
+    class Shape {
+        constructor(canvas) {
+            this.canvas = canvas;
+            this.ctx = canvas.getContext("2d");
+            this.isMouseDown = false;
+            this.lineHeight = 10;
+            this.fillness = 100;
+        }
+
+        beginPath() {
+            this.ctx.beginPath();
+        }
+
+        decrementFillness() {
+            if (this.fillness < 0)
+                return;
+
+            if (this.fillness < 2)
+                this.fillness -= 0.0005;
+            else
+                this.fillness -= 1;
+        }
+
+        refill() {
+            this.fillness = 100;
+        }
+
+        clear(){
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        }
+    }
+
+    class Rect extends Shape {
+        constructor(canvas, colorRGB) {
+            super(canvas);
+            this.colorRGB = colorRGB;
+        }
+
+        draw(x, y) {
+            console.log(this.fillness)
+            if (this.fillness < 0)
+                return;
+            this.ctx.fillStyle = `rgba(${this.colorRGB}, ${this.fillness})`;
+            this.ctx.strokeStyle = `rgba(${this.colorRGB}, ${this.fillness})`;
+            this.ctx.strokeWidth = this.lineHeight;
+            this.ctx.lineWidth = this.lineHeight;
+            this.ctx.beginPath()
+            this.ctx.rect(x, y, this.lineHeight, this.lineHeight);
+            this.ctx.fill();
+        }
+    }
+
+    class Circle extends Shape {
+        constructor(canvas, colorRGB) {
+            super(canvas);
+            this.colorRGB = colorRGB;
+        }
+
+        draw(x, y) {
+            console.log(this.fillness)
+            if (this.fillness < 0)
+                return;
+            this.ctx.fillStyle = `rgba(${this.colorRGB}, ${this.fillness})`;
+            this.ctx.strokeStyle = `rgba(${this.colorRGB}, ${this.fillness})`;
+            this.ctx.lineWidth = this.lineHeight;
+            this.ctx.strokeWidth = this.lineHeight;
+
+            this.ctx.lineTo(x, y);
+            this.ctx.stroke();
+
+            this.ctx.beginPath()
+            this.ctx.arc(x, y, this.lineHeight / 2, 0, Math.PI * 2);
+            this.ctx.fill();
+
+            this.ctx.beginPath();
+            this.ctx.moveTo(x, y);
+            this.ctx.fill();
+        }
+    }
+
+    const canvas = document.querySelector('#canvas');
+    const refill = document.querySelector('#refill');
+    const clear = document.querySelector('#clear');
+    const shapes = document.querySelector('#shapes');
+
+    let selectedShape = 'rect';
+
+    const circle = new Circle(canvas, '256, 50, 100');
+    const rect = new Rect(canvas, '15, 156, 178');
+
+    shapes.addEventListener('click', (e) => {
+        if (e.target !== shapes) {
+            const shapesElement = shapes.children;
+            for (let i = 0; i < shapesElement.length; i++) {
+                if (shapesElement[i] === e.target && !shapesElement[i].classList.contains('selected')) {
+                    shapesElement[i].classList.add('selected');
+                } else if (shapesElement[i] !== e.target && shapesElement[i].classList.contains('selected'))
+                    shapesElement[i].classList.remove('selected');
+            }
+            selectedShape = e.target.id;
+        }
+    });
+
+    refill.addEventListener('click', () => {
+        if (selectedShape === 'rect')
+            rect.refill();
+        else if (selectedShape === 'circle')
+            circle.refill();
+    });
+
+    clear.addEventListener('click', () => {
+        circle.clear();
+    });
+
+    canvas.addEventListener('mousedown', (e) => {
+        if (selectedShape === 'rect')
+            rect.isMouseDown = true;
+        else if (selectedShape === 'circle')
+            circle.isMouseDown = true;
+    });
+
+    canvas.addEventListener('mouseup', (e) => {
+        if (selectedShape === 'rect') {
+            rect.isMouseDown = false;
+            rect.beginPath();
+        } else if (selectedShape === 'circle') {
+            circle.isMouseDown = false;
+            circle.beginPath();
+        }
+
+    });
+
+    canvas.addEventListener('mousemove', e => {
+        if (selectedShape === 'rect') {
+            if (rect.isMouseDown) {
+                rect.draw(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+                rect.decrementFillness();
+            }
+        } else if (selectedShape === 'circle') {
+            if (circle.isMouseDown) {
+                circle.draw(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+                circle.decrementFillness();
+                console.log(circle.fillness)
+            }
+        }
+    });
+</script>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    form > div {
+        padding: 10px;
+        border: 2px solid lightskyblue;
+        width: 250px;
+        margin: 5px;
+    }
+</style>
+<body>
+<form>
+    <div class="div01"><input class="1" placeholder="Login"></div>
+    <div class="div01"><input class="1" placeholder="Password"></div>
+    <div class="div01"><textarea class="1" placeholder="Description"></textarea></div>
+</form>
+<script>
+    let block = document.getElementsByClassName("div01")
+    for (let i = 0; i < block.length; i++) {
+        block[i].firstElementChild.addEventListener("focus", function () {
+            this.parentNode.style.background = "blue"
+            this.parentNode.style.readonly = 'true'
+        });
+        block[i].firstElementChild.addEventListener("blur", function () {
+            this.parentNode.style.background = "white"
+            this.parentNode.style.readonly = 'true'
+        });
+    }
+</script>
+</body>
+</html>

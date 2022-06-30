@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    table {
+        border-collapse: collapse;
+    }
+
+    td {
+        width: 50px;
+        height: 50px;
+        border: 0.5px solid black;
+    }
+</style>
+<body>
+<table id="table06"></table>
+</body>
+<script>
+    let table = document.getElementById('table06')
+    let N = 8
+    let M = 8
+    for (let i = 0; i < N; i++) {
+        let rows = table.insertRow(i)
+        for (let j = 0; j < M; j++) {
+            let cells = rows.insertCell(j)
+            cells.style.backgroundColor = 'green'
+        }
+    }
+    let cube = document.getElementsByTagName("td")
+    for (let i = 0; i < cube.length; i++) {
+        cube[i].addEventListener('click', function () {
+            if (this.style.backgroundColor == 'green') this.style.backgroundColor = 'red'
+            else if (this.style.backgroundColor == 'red') this.style.backgroundColor = 'green'
+        })
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 4</title>
+</head>
+<style>
+    body {
+        background: cornflowerblue;
+    }
+
+    #all_block {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    #block1, #block2 {
+        width: 400px;
+        height: 200px;
+        background: white;
+        display: flex;
+        flex-direction: column;
+    }
+
+    button {
+        font-size: 50px;
+        display: inline-block;
+        margin-right: 25px;
+        margin-left: 25px;
+    }
+
+    #buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+</style>
+<body>
+<div id="all_block">
+    <div id="block1">
+        <label for="1"><input type="checkbox" id="1">Андрієнко А.Б.</label>
+        <label for="2"><input type="checkbox" id="2">Борисенко В.Г.</label>
+        <label for="3"><input type="checkbox" id="3">Василенко Д.Е.</label>
+        <label for="4"><input type="checkbox" id="4">Гавриленко К.Л.</label>
+        <label for="5"><input type="checkbox" id="5">Дмитренко М.Н.</label>
+        <label for="6"><input type="checkbox" id="6">Клименко В.М.</label>
+    </div>
+    <div id="buttons">
+        <button id="Right">>></button>
+        <button id="Left"><<</button>
+    </div>
+    <div id="block2"></div>
+</div>
+<script>
+    let block1 = document.getElementById("block1")
+    let block2 = document.getElementById("block2")
+    let right = document.getElementById("Right")
+    let left = document.getElementById("Left")
+    let arr = new Array(6)
+    let arr2 = new Array(6)
+    for (let i = 0; i < 6; i++)
+        arr[i] = document.querySelectorAll("#block1 label")[i]
+    right.addEventListener('click', function () {
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] === undefined)
+                continue
+            arr2[i] = undefined
+            if (arr[i].children[0].checked) {
+                arr[i].children[0].checked = false
+                arr2[i] = arr[i]
+                block1.removeChild(arr[i])
+                arr[i] = undefined
+            }
+        }
+        let second_block = document.querySelectorAll("#block2 label")
+        let block2 = document.getElementById("block2")
+        for (let i = 0; i < second_block.length; i++)
+            block2.removeChild(second_block[i])
+        for (let i = 0; i < arr2.length; i++) {
+            if (arr2[i] === undefined)
+                continue
+            block2.appendChild(arr2[i])
+        }
+    })
+
+    left.addEventListener("click", function () {
+            for (let i = 0; i < arr2.length; i++) {
+                if (arr2[i] === undefined)
+                    continue
+                arr[i] = undefined
+                if (arr2[i].children[0].checked) {
+                    arr2[i].children[0].checked = false
+                    arr[i] = arr2[i]
+                    block2.removeChild(arr2[i])
+                    arr2[i] = undefined
+                }
+            }
+            let second_block = document.querySelectorAll("#block1 label")
+            for (let i = 0; i < second_block.length; i++)
+                block1.removeChild(second_block[i])
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] === undefined)
+                    continue
+                block1.appendChild(arr[i])
+            }
+        }
+    )
+</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+table, th, td
+{
+    border: 1px solid grey;
+}
+td{
+    height: 125px;
+    width: 100%;
+}

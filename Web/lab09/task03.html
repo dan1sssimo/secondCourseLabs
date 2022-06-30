@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task3</title>
+</head>
+<style>
+    .selected{
+        border: 2px solid black;
+        padding: 1px 3px;
+    }
+    div> div:first-child{
+        display: flex;
+        flex-direction: row;
+    }
+</style>
+<body>
+<div>
+    <div>
+        <div>
+            <button id="up">up</button>
+        </div>
+        <div>
+            <button id="down">down</button>
+        </div>
+    </div>
+    <label for="text"></label>
+    <textarea id="text" rows="5" cols="50"></textarea>
+    <div id="history"></div>
+</div>
+</body>
+<script>
+    const text = document.querySelector('#text');
+    const history = document.querySelector('#history');
+    const up = document.querySelector('#up');
+    const down = document.querySelector('#down');
+    let historyList = []
+
+    document.addEventListener('DOMContentLoaded', (e) => {
+        document.cookie.split(';').forEach(part => {
+            if (part.split('=')[0].trim() === 'history') {
+                historyList = JSON.parse(part.split('=')[1].trim());
+            }
+        });
+
+        historyList.forEach(historyValue => {
+            const historyElement = document.createElement('div');
+            historyElement.innerHTML = historyValue.value;
+            history.append(historyElement);
+        });
+        let historiesElements = Object.values(history.children);
+        historiesElements[historyList.length - 1].classList.add('selected')
+        if (historyList.length > 0)
+            text.value = historyList[historyList.length - 1].value;
+    });
+
+
+    window.addEventListener('beforeunload', () => {
+        document.cookie = 'history=' + JSON.stringify(historyList);
+    }, false);
+
+    text.addEventListener('change', (e) => {
+        const value = e.target.value;
+        historyList.push({
+            value,
+            isSelected: true,
+        });
+        Object.values(history.children).forEach(child => {
+            if (child.classList.contains('selected'))
+                child.classList.remove('selected');
+        });
+        const historyElement = document.createElement('div');
+        historyElement.innerHTML = value;
+        historyElement.classList.add('selected')
+        history.append(historyElement);
+    });
+
+    up.addEventListener('click', () => {
+        let historiesElements = Object.values(history.children);
+        historiesElements.forEach((historyElement, i) => {
+            if (historyElement.classList.contains('selected') && i !== 0) {
+                historyElement.classList.remove('selected');
+                historiesElements[i - 1].classList.add('selected')
+                text.value = historiesElements[i - 1].innerHTML;
+            }
+        });
+    });
+
+    down.addEventListener('click', () => {
+        let isDone = false;
+        let historiesElements = Object.values(history.children);
+        historiesElements.forEach((historyElement, i) => {
+            if (historyElement.classList.contains('selected') && i !== historiesElements.length - 1 && !isDone) {
+                debugger
+                historyElement.classList.remove('selected');
+                historiesElements[i + 1].classList.add('selected')
+                text.value = historiesElements[i + 1].innerHTML;
+                isDone = true;
+            }
+        });
+    });
+</script>
+</html>

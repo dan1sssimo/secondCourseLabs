@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    img {
+        width: 250px;
+        height: 250px;
+    }
+</style>
+<body>
+<table class="table">
+    <tr>
+        <td><img src="1.jpg"></td>
+        <td><img src="2.jpg"></td>
+        <td><img src="3.jpg"></td>
+        <td><img src="4.jpg"></td>
+    </tr>
+    <tr>
+        <td><img src="5.jpg"></td>
+        <td><img src="6.jpg"></td>
+        <td><img src="7.jpg"></td>
+        <td><img src="1.jpg"></td>
+    </tr>
+    <tr>
+        <td><img src="9.jpg"></td>
+        <td><img src="10.jpg"></td>
+        <td><img src="2.jpg"></td>
+        <td><img src="12.jpg"></td>
+    </tr>
+
+</table>
+<script>
+    let arr = document.getElementsByTagName("td")
+    for (let i = 0; i < arr.length; i++) {
+        arr[i].onclick = change
+    }
+
+    function change() {
+        let photo = this
+        let change_color = photo.style.filter
+        if (change_color == "grayscale(0%)") {
+            photo.style.filter = "grayscale(100%)"
+            photo.style.opacity = "100%"
+        } else {
+            photo.style.filter = "grayscale(0%)"
+            photo.style.opacity = "100%"
+        }
+    }
+</script>
+</body>
+</html>

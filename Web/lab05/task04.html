@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="array" onchange="ChangeEmail()">
+    <input class="checkbox" type="checkbox" name="email" >mountain@gmail.com<p>
+    <input class="checkbox" type="checkbox" name="email" >tree@gmail.com<p>
+    <input class="checkbox" type="checkbox" name="email" >world@gmail.com<p>
+    <input class="checkbox" type="checkbox" name="email" >cloud@gmail.com<p>
+    <input class="checkbox" type="checkbox" name="email" >river@gmail.com<p>
+    <input class="checkbox" type="checkbox" name="email" >wood@gmail.com<p>
+    <input class="checkbox" type="checkbox" name="email" >field@gmail.com<p>
+    <input class="checkbox" type="checkbox" name="email" >snow@gmail.com<p>
+    <input class="checkbox" type="checkbox" name="email" >rain@gmail.com<p>
+    <input class="checkbox" type="checkbox" name="email" >wind@gmail.com<p>
+</form>
+<div id="rez"></div>
+</body>
+<script>
+    function ChangeEmail() {
+        let fullForm = document.getElementById('array')
+        let rez = document.getElementById('rez')
+        rez.innerHTML = ''
+        let arr1 = fullForm.querySelectorAll(':checked')
+        let tmp = true
+        for (let i = 0; i < arr1.length; i++) {
+            if (tmp) {
+                rez.innerHTML = arr1[i].nextSibling.textContent
+                tmp = false
+            }
+            else rez.innerHTML += '; ' + arr1[i].nextSibling.textContent
+        }
+
+    }
+</script>
+
+</body>
+</html>

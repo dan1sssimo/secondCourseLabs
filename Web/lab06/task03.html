@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .coordinate {
+        width: 25%;
+        height: 200px;
+        border: #000 solid 5px;
+        padding: 20px;
+    }
+</style>
+<body>
+<div class="coordinate">
+</div>
+<p id="coords2">Координати курсору: </p>
+X:<p class="x"></p>
+Y:<p class="y"></p>
+<script>
+    document.querySelector('.coordinate').onmousemove=function (event){
+        document.querySelector('.x').innerHTML = event.offsetX;
+        document.querySelector('.y').innerHTML = event.offsetY;
+    }
+</script>
+</body>
+</html>
